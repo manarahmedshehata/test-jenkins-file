@@ -4,11 +4,8 @@ node {
     checkout scm
   }
   stage('Deploy image') {
-    sh "whoami"
-    sh "docker ps"
-    sh "docker run hello-world"
-    sh "kubectl run andriodstudio --image=docker.io/manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml""
-    sh "kubectl create -f "deployment-rc.yaml""
+    sh "kubectl run andriodstudio --image=docker.io/manar21/android-studio:junit-fabricplugin --replicas=2 --output=yaml --dry-run > "mobile_env-rc.yaml""
+    sh "kubectl create -f "mobile_env-rc.yaml""
   }
   stage('Push image') {
     docker.withRegistry("https://registry.hub.docker.com", 'docker-hub-credential') {
