@@ -4,11 +4,8 @@ node {
     checkout scm
   }
   stage('Deploy image') {
-    sh "chmod +x deploy.sh"
-    sh "export IMAGE_NAME_FILE=andriodstudio"
-    sh "export DEPLOYMENT_NAME=andriodstudio"
-    sh "export IMAGE_NAME=manar21/android-studio"
-    sh "export REPLICAS=2"
-    sh "./deploy.sh"
+    sh "docker pull manar21/android-studio"
+    sh "kubectl run andriodstudio --image=manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml""
+    sh "kubectl create -f "deployment-rc.yaml""
   }
 }
