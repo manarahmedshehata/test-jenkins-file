@@ -4,6 +4,7 @@ node {
     checkout scm
   }
   stage('Deploy image') {
+    sh "whoami"
     sh "docker ps"
     sh "docker run hello-world"
     sh "kubectl run andriodstudio --image=docker.io/manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml""
