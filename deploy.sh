@@ -1,6 +1,6 @@
-if [[ $(kubectl get deployments | grep $DEPLOYMENT_NAME) ]]; then
+if [[ $(kubectl get deployments | grep andriostudio) ]]; then
 echo "deployments exists"
 else
-kubectl run $DEPLOYMENT_NAME --image=$IMAGE_NAME --replicas=2 --output=yaml --dry-run > "$IMAGE_NAME_FILE-rc.yaml"
-kubectl create -f "$IMAGE_NAME_FILE-rc.yaml"
+kubectl run andriostudio --image=manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml"
+kubectl create -f "deployment-rc.yaml"
 fi
