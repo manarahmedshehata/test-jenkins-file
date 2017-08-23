@@ -5,7 +5,7 @@ node {
   }
   stage('Deploy image') {
     sh "docker ps"
-    sh "docker pull manar21/android-studio:junit-fabricplugin"
+    sh "docker run hello-world"
     sh "kubectl run andriodstudio --image=docker.io/manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml""
     sh "kubectl create -f "deployment-rc.yaml""
   }
