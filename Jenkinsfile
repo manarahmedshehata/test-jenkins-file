@@ -6,7 +6,6 @@ node {
   stage('Deploy image') {
     sh "whoami"
     sh "docker ps"
-    sh "docker login -u ayasalah93 -p aya27548435"
     sh "docker run hello-world"
     sh "kubectl run andriodstudio --image=docker.io/manar21/android-studio --replicas=2 --output=yaml --dry-run > "deployment-rc.yaml""
     sh "kubectl create -f "deployment-rc.yaml""
